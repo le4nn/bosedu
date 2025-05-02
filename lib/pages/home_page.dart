@@ -65,8 +65,7 @@ class _HomePageState extends State<HomePage> {
                               Icons.camera_alt,
                               color: Colors.white,
                               size: 20,
-                            ),
-                          ),
+                            )),
                           Container(
                             margin: const EdgeInsets.all(8),
                             decoration: const BoxDecoration(
@@ -77,16 +76,11 @@ class _HomePageState extends State<HomePage> {
                               Icons.notifications,
                               color: Colors.white,
                               size: 20,
-                            ),
-                          ),
-                        ],
-                      ),
+                            ))]),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(25),
                         borderSide: BorderSide.none,
-                      ),
-                    ),
-                  ),
+                      ))),
                   const SizedBox(height: 16),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -105,15 +99,7 @@ class _HomePageState extends State<HomePage> {
                           _buildChip('4', Colors.red),
                           const SizedBox(width: 8),
                           _buildChip('250 pts', Colors.red),
-                        ],
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ),
-          ),
-        ),
+                        ])])])))),
         body: Column(
           children: [
             Expanded(
@@ -190,17 +176,8 @@ class _HomePageState extends State<HomePage> {
                                               style: TextStyle(
                                                 color: Colors.white,
                                                 fontSize: 10,
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              );
-                            },
-                          ),
+                                              ))])))]));
+                            }),
                           Positioned(
                             bottom: 8,
                             left: 0,
@@ -221,14 +198,7 @@ class _HomePageState extends State<HomePage> {
                                         _currentPage == index
                                             ? Colors.blue
                                             : Colors.grey,
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
+                                  )))))])),
                     const SizedBox(height: 16),
                     SingleChildScrollView(
                       scrollDirection: Axis.horizontal,
@@ -241,9 +211,7 @@ class _HomePageState extends State<HomePage> {
                           _buildCategoryButton('Bootcamp', Icons.computer),
                           _buildCategoryButton('Others', Icons.category),
                           const SizedBox(width: 16),
-                        ],
-                      ),
-                    ),
+                        ])),
                     const SizedBox(height: 16),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -270,10 +238,7 @@ class _HomePageState extends State<HomePage> {
                           trailing: ElevatedButton(
                             onPressed: () {},
                             child: const Text('Join Member'),
-                          ),
-                        ),
-                      ),
-                    ),
+                          )))),
                     const SizedBox(height: 16),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -292,19 +257,10 @@ class _HomePageState extends State<HomePage> {
                             child: const Text(
                               'VIEW MORE',
                               style: TextStyle(color: Colors.blue),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
+                            ))])),
                     _buildNewsCard(),
                     _buildNewsCard(),
-                  ],
-                ),
-              ),
-            ),
-          ],
-        ),
+                  ])))]),
         bottomNavigationBar: BottomNavigationBar(
           items: const [
             BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
@@ -327,19 +283,17 @@ class _HomePageState extends State<HomePage> {
               case 1:
                 Navigator.pushReplacementNamed(context, '/events');
                 break;
-              case 2:
-                Navigator.pushReplacementNamed(context, '/store');
-                break;
-              case 3:
-                Navigator.pushReplacementNamed(context, '/forum');
-                break;
-              case 4:
-                Navigator.pushReplacementNamed(context, '/profile');
-                break;
+              // case 2:
+              //   Navigator.pushReplacementNamed(context, '/store');
+              //   break;
+              // case 3:
+              //   Navigator.pushReplacementNamed(context, '/forum');
+              //   break;
+              // case 4:
+              //   Navigator.pushReplacementNamed(context, '/profile');
+              //   break;
             }
-          },
-        ),
-      ),
+          })),
     );
   }
 
@@ -374,10 +328,7 @@ class _HomePageState extends State<HomePage> {
           Text(
             label.toUpperCase(),
             style: const TextStyle(fontSize: 12, color: Colors.black),
-          ),
-        ],
-      ),
-    );
+          )]));
   }
 
   Widget _buildNewsCard() {
@@ -439,15 +390,6 @@ class _HomePageState extends State<HomePage> {
                       Text(
                         '38',
                         style: TextStyle(fontSize: 12, color: Colors.grey),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
+                      )])]))])));
   }
 }

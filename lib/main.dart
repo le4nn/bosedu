@@ -1,4 +1,6 @@
-import 'package:bosedu/pages/event.dart';
+import 'package:bosedu/pages/event/event.dart';
+import 'package:bosedu/pages/event/event_detail_page.dart';
+import 'package:bosedu/pages/event/event_registration_page.dart';
 import 'package:bosedu/pages/home_page.dart';
 import 'package:flutter/material.dart';
 
@@ -14,6 +16,8 @@ class MyApp extends StatelessWidget {
       routes: {
         '/': (context) => HomePage(),
         '/events': (context) => EventsPage(),
+        '/eventDetail': (context) => EventDetailPage(),
+        '/eventRegistration': (context) => EventRegistrationPage(),
       },
     );
   }

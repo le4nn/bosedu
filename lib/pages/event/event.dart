@@ -13,41 +13,59 @@ class _EventsPageState extends State<EventsPage> {
 
   @override
   Widget build(BuildContext context) {
+    final double statusBarHeight = MediaQuery.of(context).padding.top;
+
     return AnnotatedRegion<SystemUiOverlayStyle>(
       value: const SystemUiOverlayStyle(
         statusBarColor: Colors.transparent,
         statusBarIconBrightness: Brightness.light,
       ),
       child: Scaffold(
+        appBar: PreferredSize(
+          preferredSize: const Size.fromHeight(60),
+          child: AppBar(
+            elevation: 0,
+            flexibleSpace: Padding(
+              padding: EdgeInsets.only(
+                top: statusBarHeight,
+                left: 16,
+                right: 16,
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    'EVENT',
+                    style: const TextStyle(
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.all(8),
+                        child: const Icon(
+                          Icons.shopping_cart_outlined,
+                          color: Colors.black,
+                          size: 20,
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(8),
+                        child: const Icon(
+                          Icons.notifications_none_outlined,
+                          color: Colors.black,
+                          size: 20,
+                        ))])])))),
         body: Column(
           children: [
             Expanded(
               child: SingleChildScrollView(
                 child: Column(
                   children: [
-                    const Padding(
-                      padding: EdgeInsets.all(16),
-                      child: Text(
-                        'EVENT',
-                        style: TextStyle(
-                          fontSize: 24,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                    SingleChildScrollView(
-                      scrollDirection: Axis.horizontal,
-                      child: Row(
-                        children: [
-                          const SizedBox(width: 16),
-                          _buildFilterChip('New', false),
-                          _buildFilterChip('Online', false),
-                          _buildFilterChip('Offline', false),
-                          _buildFilterChip('Free', false),
-                          const SizedBox(width: 16),
-                        ],
-                      ),
-                    ),
+                    const SizedBox(height: 16),
                     _buildEventCard(
                       'OFFLINE',
                       'MASTERING THE ENTREPRENEUR MINDSET',
@@ -56,6 +74,7 @@ class _EventsPageState extends State<EventsPage> {
                       'May 22, 2024',
                       'assets/images/event_image_1.jpg',
                       Colors.blue,
+                      context,
                     ),
                     _buildEventCard(
                       'ONLINE',
@@ -65,13 +84,8 @@ class _EventsPageState extends State<EventsPage> {
                       'May 22, 2024',
                       'assets/images/event_image_2.jpg',
                       Colors.red,
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          ],
-        ),
+                      context,
+                    )])))]),
         bottomNavigationBar: BottomNavigationBar(
           items: const [
             BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
@@ -104,40 +118,19 @@ class _EventsPageState extends State<EventsPage> {
                 break;
             }
           },
-        ),
-      ),
-    );
-  }
-
-  Widget _buildFilterChip(String label, bool selected) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 4),
-      child: FilterChip(
-        label: Text(
-          label.toUpperCase(),
-          style: TextStyle(
-            color: selected ? Colors.white : Colors.black,
-            fontSize: 12,
-          ),
-        ),
-        selected: selected,
-        onSelected: (bool value) {},
-        backgroundColor: Colors.grey[200],
-        selectedColor: Colors.blue,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-      ),
-    );
+        )));
   }
 
   Widget _buildEventCard(
-    String type,
-    String title,
-    String price,
-    String participants,
-    String date,
-    String imagePath,
-    Color chipColor,
-  ) {
+      String type,
+      String title,
+      String price,
+      String participants,
+      String date,
+      String imagePath,
+      Color chipColor,
+      BuildContext context,
+      ) {
     return Card(
       margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
@@ -174,11 +167,7 @@ class _EventsPageState extends State<EventsPage> {
                   child: Text(
                     type,
                     style: const TextStyle(color: Colors.white, fontSize: 12),
-                  ),
-                ),
-              ),
-            ],
-          ),
+                  )))]),
           Padding(
             padding: const EdgeInsets.all(16),
             child: Column(
@@ -200,9 +189,7 @@ class _EventsPageState extends State<EventsPage> {
                         fontSize: 16,
                         color: price == 'FREE' ? Colors.green : Colors.black,
                         decoration:
-                            price.contains('\$45.5')
-                                ? TextDecoration.lineThrough
-                                : null,
+                        price.contains('\$45.5') ? TextDecoration.lineThrough : null,
                       ),
                     ),
                     if (price.contains('\$45.5')) const SizedBox(width: 8),
@@ -213,10 +200,7 @@ class _EventsPageState extends State<EventsPage> {
                           fontSize: 16,
                           color: Colors.grey,
                           decoration: TextDecoration.lineThrough,
-                        ),
-                      ),
-                  ],
-                ),
+                        ))]),
                 const SizedBox(height: 8),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -230,10 +214,7 @@ class _EventsPageState extends State<EventsPage> {
                           style: const TextStyle(
                             fontSize: 12,
                             color: Colors.grey,
-                          ),
-                        ),
-                      ],
-                    ),
+                          ))]),
                     Row(
                       children: [
                         const Icon(
@@ -247,25 +228,26 @@ class _EventsPageState extends State<EventsPage> {
                           style: const TextStyle(
                             fontSize: 12,
                             color: Colors.blue,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
+                          ))])]),
                 const SizedBox(height: 8),
                 Align(
                   alignment: Alignment.centerRight,
                   child: ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.pushNamed(
+                        context,
+                        '/eventDetail',
+                        arguments: {
+                          'type': type,
+                          'title': title,
+                          'price': price,
+                          'participants': participants,
+                          'date': date,
+                          'imagePath': imagePath,
+                          'chipColor': chipColor,
+                        });
+                    },
                     child: const Text('Join Event'),
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ],
-      ),
-    );
+                  ))]))]));
   }
 }
