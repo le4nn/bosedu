@@ -16,9 +16,8 @@ class EventRegistrationPage extends StatelessWidget {
 
     final String title = args['title'] ?? 'No Title';
     final String price = args['price'] ?? '\$0';
+    final String originalPrice = args['originalPrice'] ?? price;
     final String imagePath = args['imagePath'] ?? 'assets/images/event_image_1.jpg';
-
-    final double statusBarHeight = MediaQuery.of(context).padding.top;
 
     return AnnotatedRegion<SystemUiOverlayStyle>(
       value: const SystemUiOverlayStyle(
@@ -69,13 +68,14 @@ class EventRegistrationPage extends StatelessWidget {
                           style: TextStyle(
                             fontSize: 16,
                             color: price == 'FREE' ? Colors.green : Colors.red,
-                            decoration: price.contains('\$45.5') ? TextDecoration.lineThrough : null,
-                          )),
-                        if (price.contains('\$45.5')) const SizedBox(width: 8),
-                        if (price.contains('\$45.5'))
-                          const Text(
-                            '\$45.5',
-                            style: TextStyle(
+                          ),
+                        ),
+                        if (price != originalPrice && originalPrice != price)
+                          const SizedBox(width: 8),
+                        if (price != originalPrice && originalPrice != price)
+                          Text(
+                            originalPrice,
+                            style: const TextStyle(
                               fontSize: 16,
                               color: Colors.grey,
                               decoration: TextDecoration.lineThrough,
@@ -155,16 +155,27 @@ class EventRegistrationPage extends StatelessWidget {
                       children: [
                         Expanded(
                           child: ElevatedButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              Navigator.pushNamed(
+                                context,
+                                '/paymentConfirmation',
+                                arguments: {
+                                  'title': title,
+                                  'price': price,
+                                  'originalPrice': originalPrice,
+                                  'imagePath': imagePath,
+                                },
+                              );
+                            },
                             style: ElevatedButton.styleFrom(
-                              backgroundColor: Colors.grey[300],
+                              backgroundColor: Colors.blueAccent,
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(20),
                               ),
                             ),
                             child: const Text(
                               'Continue Payment',
-                              style: TextStyle(color: Colors.black),
+                              style: TextStyle(color: Colors.white),
                             )))])]))]))));
   }
 }

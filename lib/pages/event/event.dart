@@ -247,7 +247,11 @@ class _EventsPageState extends State<EventsPage> {
                           'chipColor': chipColor,
                         });
                     },
-                    child: const Text('Join Event'),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.blueAccent,
+                    ),
+                    child: const Text('Join Event',
+                        style: TextStyle(color: Colors.white)),
                   ))]))]));
   }
 }

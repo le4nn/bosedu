@@ -17,12 +17,11 @@ class EventDetailPage extends StatelessWidget {
     final String type = args['type'] ?? 'OFFLINE';
     final String title = args['title'] ?? 'No Title';
     final String price = args['price'] ?? '\$0';
+    final String originalPrice = args['originalPrice'] ?? price;
     final String participants = args['participants'] ?? '0 Participants';
     final String date = args['date'] ?? 'No Date';
     final String imagePath = args['imagePath'] ?? 'assets/images/event_image_1.jpg';
     final Color chipColor = args['chipColor'] ?? Colors.blue;
-
-    final double statusBarHeight = MediaQuery.of(context).padding.top;
 
     return AnnotatedRegion<SystemUiOverlayStyle>(
       value: const SystemUiOverlayStyle(
@@ -84,19 +83,19 @@ class EventDetailPage extends StatelessWidget {
                           style: TextStyle(
                             fontSize: 16,
                             color: price == 'FREE' ? Colors.green : Colors.red,
-                            decoration: price.contains('\$45.5') ? TextDecoration.lineThrough : null,
                           ),
                         ),
-                        if (price.contains('\$45.5')) const SizedBox(width: 8),
-                        if (price.contains('\$45.5'))
-                          const Text(
-                            '\$45.5',
-                            style: TextStyle(
+                        if (price != originalPrice) ...[
+                          const SizedBox(width: 8),
+                          Text(
+                            originalPrice,
+                            style: const TextStyle(
                               fontSize: 16,
                               color: Colors.grey,
                               decoration: TextDecoration.lineThrough,
                             ),
                           ),
+                        ],
                       ],
                     ),
                     const SizedBox(height: 8),
@@ -163,12 +162,13 @@ class EventDetailPage extends StatelessWidget {
                                 arguments: {
                                   'title': title,
                                   'price': price,
+                                  'originalPrice': originalPrice,
                                   'imagePath': imagePath,
                                 },
                               );
                             },
                             style: ElevatedButton.styleFrom(
-                              backgroundColor: Colors.blue,
+                              backgroundColor: Colors.blueAccent,
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(20),
                               ),
