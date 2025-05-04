@@ -5,6 +5,7 @@ import 'package:bosedu/pages/event/registration_complete_page.dart';
 import 'package:bosedu/pages/payment/payment_confirmation_page.dart';
 import 'package:bosedu/pages/news/home_page.dart';
 import 'package:bosedu/pages/payment/payment_method_page.dart';
+import 'package:bosedu/pages/transaction/transaction_history_page.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -18,6 +19,7 @@ class MyApp extends StatelessWidget {
       initialRoute: '/',
       routes: {
         '/': (context) => HomePage(),
+        '/transaction_history': (context) => TransactionHistoryPage(),
         '/events': (context) => EventsPage(),
         '/eventDetail': (context) => EventDetailPage(),
         '/eventRegistration': (context) => EventRegistrationPage(),
