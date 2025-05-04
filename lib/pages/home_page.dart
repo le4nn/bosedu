@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import 'components/notification_page.dart';
+
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
@@ -32,7 +34,7 @@ class _HomePageState extends State<HomePage> {
       ),
       child: Scaffold(
         appBar: PreferredSize(
-          preferredSize: const Size.fromHeight(180),
+          preferredSize: const Size.fromHeight(120),
           child: AppBar(
             backgroundColor: const Color.fromARGB(255, 1, 105, 190),
             elevation: 0,
@@ -42,64 +44,36 @@ class _HomePageState extends State<HomePage> {
                 left: 16,
                 right: 16,
               ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  TextField(
-                    decoration: InputDecoration(
-                      filled: true,
-                      fillColor: Colors.white,
-                      hintText: 'Search something...',
-                      hintStyle: const TextStyle(color: Colors.grey),
-                      prefixIcon: const Icon(Icons.search, color: Colors.grey),
-                      suffixIcon: Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Container(
-                            margin: const EdgeInsets.all(8),
-                            decoration: const BoxDecoration(
-                              shape: BoxShape.circle,
-                              color: Colors.grey,
-                            ),
-                            child: const Icon(
-                              Icons.camera_alt,
-                              color: Colors.white,
-                              size: 20,
-                            )),
-                          Container(
-                            margin: const EdgeInsets.all(8),
-                            decoration: const BoxDecoration(
-                              shape: BoxShape.circle,
-                              color: Colors.red,
-                            ),
-                            child: const Icon(
-                              Icons.notifications,
-                              color: Colors.white,
-                              size: 20,
-                            ))]),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(25),
-                        borderSide: BorderSide.none,
-                      ))),
-                  const SizedBox(height: 16),
+                  SizedBox(
+                    width: 260,
+                    child: TextField(
+                      decoration: InputDecoration(
+                        filled: true,
+                        fillColor: Colors.white,
+                        hintText: 'Search something...',
+                        hintStyle: const TextStyle(color: Colors.grey),
+                        prefixIcon: const Icon(Icons.search, color: Colors.grey),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(25),
+                          borderSide: BorderSide.none,
+                        )))),
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      const Text(
-                        //TODO: Добавить имя из базы данных
-                        'Hello, Claudia!',
-                        style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white,
-                        ),
+                      IconButton(
+                        icon: const Icon(Icons.shopping_bag, color: Colors.white),
+                        onPressed: () {},
                       ),
-                      Row(
-                        children: [
-                          _buildChip('4', Colors.red),
-                          const SizedBox(width: 8),
-                          _buildChip('250 pts', Colors.red),
-                        ])])])))),
+                      IconButton(
+                        icon: const Icon(Icons.notifications, color: Colors.white),
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => const NotificationPage()),
+                          );
+                        })])])))),
         body: Column(
           children: [
             Expanded(
